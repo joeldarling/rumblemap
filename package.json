@@ -1,0 +1,19 @@
+{
+  "name": "rumblemap",
+  "version": "1.0.0",
+  "description": "A live map of earthquakes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
+    "jquery": "^2.2.3",
+    "mongoose": "^4.4.16",
+    "nodemon": "^1.9.2"
+  }
+}
