@@ -4,22 +4,57 @@
       <title>RumbleMap by Joel Darling</title>
 
       <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+      <link href="/stylesheets/styles.css" rel="stylesheet" />
 
       <script src="/angular/angular.js" defer></script>
-      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
+      <script src="/node_modules/jquery/dist/jquery.min.js" defer></script>
 
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM-LljLfzzaDWyrYmPvK-0tTdr9ihCZVU&" defer></script>
+      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
+      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
       <script src="/js/app.js" defer></script>
+
+      <base href="/">
 
   </head>
 
   <body ng-app="rumblemap">
 
-
     <div class="container">
 
-      HOT APP hat eit
       <ui-view></ui-view>
+
     </div>
+
+
+
+
+    <script src="/js/map/map.js" defer></script>
+
+
+
+    <!-- <script>
+      var map;
+      function initialize() {
+        if(!google)
+          console.log('not loaded')
+
+        console.log(google)
+        google.maps.event.addDomListener(window, "load", initMap);
+      }
+
+      function initMap(){
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: new google.maps.LatLng(41.850033, -87.6500523),
+          zoom: 4,
+        });
+
+        style = [{"featureType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"lightness":-100}]}];
+
+        map.setOptions({styles: style})
+      }
+    </script> -->
+
   </body>
 
 

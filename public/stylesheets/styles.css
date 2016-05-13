@@ -1,0 +1,8 @@
+body {
+    width: auto;
+    height: auto;
+}
+#map-canvas {
+    height: 700px;
+    width: 100%;
+}
