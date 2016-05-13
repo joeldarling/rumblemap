@@ -17,9 +17,7 @@ app.use('/node_modules', express.static(path.join(__dirname, '../node_modules'))
 
 app.use('/js', express.static(path.join(__dirname, '../browser/js')));
 
-// app.get('/*', function (req, res) {
-//     res.sendFile(indexPath);
-// });
+app.use('/', express.static(path.join(__dirname, '../public')));
 
 //setup middleware
 app.use(morgan('dev'));
