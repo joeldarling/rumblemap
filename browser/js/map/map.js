@@ -8,7 +8,7 @@ function initialize_gmaps() {
     zoom: 3,
     streetViewControl: false,
     mapTypeControl: false,
-    minZoom: 3
+    minZoom: 2
   });
 
   //style = [{"featureType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"lightness":-100}]}];

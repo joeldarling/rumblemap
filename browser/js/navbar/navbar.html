@@ -35,12 +35,12 @@
              Trigger Earthquake
            </md-tooltip>
         </md-button>
-        <div layout-xs="column" flex-xs="100">
+        <!-- <div layout-xs="column" flex-xs="100">
 
-          <md-checkbox style="margin-top: 20px" aria-label="Disabled checkbox" ng-model="rumbleEnabled">
+          <md-checkbox style="margin-top: 20px" aria-label="Disabled checkbox" class="md-warn"ng-model="rumbleEnabled">
             Rumble
           </md-checkbox>
-        </div>
+        </div> -->
         <md-menu>
             <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
                 <md-icon md-font-set="material-icons"> settings </md-icon>
@@ -53,14 +53,14 @@
                     <md-list-item>
                         Heatmap
                     </md-list-item>
-                    <md-switch class="md-secondary" ng-click="toggleHeatmap()" ng-model="heatmapEnabled"></md-switch>
+                    <md-switch class="md-secondary md-warn" ng-click="toggleHeatmap()" ng-model="heatmapEnabled"></md-switch>
 
                 </md-menu-item>
                 <md-menu-item>
                     <md-list-item>
                         Markers
                     </md-list-item>
-                    <md-switch class="md-secondary" ng-click="toggleMarkers()" ng-model="markersEnabled"></md-switch>
+                    <md-switch class="md-secondary md-warn" ng-click="toggleMarkers()" ng-model="markersEnabled"></md-switch>
 
                 </md-menu-item>
             </md-menu-content>

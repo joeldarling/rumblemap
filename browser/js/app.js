@@ -57,7 +57,7 @@ app.controller('MainCtrl', function($scope, EarthquakeFactory, Mapper){
 
   var liveMode = setInterval(function(){
     $scope.checkForNewEarthQuake();
-  }, 300000);
+  }, 120000);
 
   $scope.checkForNewEarthQuake = function(){
 

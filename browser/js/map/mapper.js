@@ -9,6 +9,14 @@ app.factory('Mapper', function(){
   var showMarkers = true,
       showHeatmap = true;
 
+  var pinIcon = new google.maps.MarkerImage(
+      "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FFFF00",
+      null, /* size is determined at runtime */
+      null, /* origin is 0,0 */
+      null, /* anchor is bottom center of the scaled image */
+      new google.maps.Size(10, 15)
+  );
+
   return {
 
     initMap: function(gmap){
@@ -25,7 +33,7 @@ app.factory('Mapper', function(){
           position: pt,
           title: earthquake.properties.title,
           visible: showMarkers,
-          icon:''
+          icon:pinIcon
       });
 
       if(map)
@@ -151,7 +159,7 @@ app.factory('Mapper', function(){
 
       }
 
-      //heatmap.set('data', null);
+      heatmap.set('data', null);
       heatmap.set('data', active);
 
     },
