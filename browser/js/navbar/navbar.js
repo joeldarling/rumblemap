@@ -21,6 +21,18 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
   $scope.filter = {mag: 0};
   $scope.rumbleEnabled = true;
 
+  $scope.init = function(){
+    EarthquakeFactory.fetchById(0)
+    .then(function(result){
+      Mapper.reset();
+      Mapper.mapCollection(result);
+      Mapper.drawMap();
+      $scope.numActive = Mapper.getActive();
+    });
+  };
+
+  $scope.init();
+
 
   Mapper.filterMarkers();
 
@@ -55,7 +67,7 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
 
     console.log($('body'))
 
-    $('#map-canvas').effect("bounce",{distance:5}, "slow");
+    $('#map-canvas').effect("bounce",{distance:7}, "slow");
   };
 
 });

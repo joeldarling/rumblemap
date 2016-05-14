@@ -25,6 +25,7 @@ app.factory('Mapper', function(){
           position: pt,
           title: earthquake.properties.title,
           visible: showMarkers,
+          icon:''
       });
 
       if(map)
@@ -120,6 +121,9 @@ app.factory('Mapper', function(){
         this.updateHeatMap();
 
     },
+    getById: function(id){
+      return points[id];
+    },
     getActive: function(){
 
       var active=0;
@@ -147,7 +151,7 @@ app.factory('Mapper', function(){
 
       }
 
-      heatmap.set('data', null);
+      //heatmap.set('data', null);
       heatmap.set('data', active);
 
     },

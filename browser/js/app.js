@@ -45,7 +45,7 @@ app.controller('MainCtrl', function($scope, EarthquakeFactory, Mapper){
   $scope.active = 0;
 
   $scope.init = function(){
-    EarthquakeFactory.fetchAll()
+    EarthquakeFactory.fetchById(0)
     .then(function(earthquakes){
       $scope.earthquakes = earthquakes;
       Mapper.drawMap();
@@ -54,4 +54,32 @@ app.controller('MainCtrl', function($scope, EarthquakeFactory, Mapper){
   };
 
   $scope.init();
+
+  var liveMode = setInterval(function(){
+    $scope.checkForNewEarthQuake();
+  }, 300000);
+
+  $scope.checkForNewEarthQuake = function(){
+
+    var found = false;
+
+    console.log('searching');
+
+    EarthquakeFactory.fetchById(0)
+    .then(function(earthquakes){
+
+      earthquakes.forEach(function(earthquake){
+
+        if(!Mapper.getById(earthquake.id)){
+          found = true;
+          console.log('new earthquake')
+          $('#map-canvas').effect("bounce",{distance:7}, "slow");
+        }
+
+      });
+
+    });
+
+  };
+
 });
