@@ -6,12 +6,24 @@
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM-LljLfzzaDWyrYmPvK-0tTdr9ihCZVU&libraries=visualization" defer></script>
 
       <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+      <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
       <link href="/stylesheets/styles.css" rel="stylesheet" />
 
-      <script src="/angular/angular.js" defer></script>
-      <script src="/node_modules/jquery/dist/jquery.min.js" defer></script>
-      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
+      <!-- <script src="/node_modules/jquery/dist/jquery.min.js" defer></script> -->
+      <!-- Angular Material requires Angular.js Libraries -->
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"  defer></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"  defer></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"  defer></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"  defer></script>
+      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"  defer></script>
 
+      <!-- Angular Material Library -->
+      <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"  defer></script>
+
+      <script src="/js/app.js"  defer></script>
+      <script src="/js/map/map.js"  defer></script>
+      <script src="/js/map/mapper.js"  defer></script>
+      <script src="/js/map/earthquake.factory.js"  defer></script>
 
       <base href="/">
 
@@ -19,7 +31,11 @@
 
   <body ng-app="rumblemap">
 
-    <div class="container">
+    <div class="container ">
+
+      <md-slider  class="main"min="0" max="8">
+      </md-slider>
+
 
       <div id="map-canvas"></div>
 
@@ -27,10 +43,7 @@
 
     </div>
 
-    <script src="/js/app.js" defer></script>
-    <script src="/js/map/map.js" defer></script>
-    <script src="/js/map/mapper.js" defer></script>
-    <script src="/js/map/earthquake.factory.js" defer></script>
+
 
   </body>
 

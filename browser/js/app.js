@@ -1,4 +1,4 @@
-var app = angular.module('rumblemap', ['ui.router']);
+var app = angular.module('rumblemap', ['ui.router','ngMaterial']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
 
@@ -11,6 +11,7 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 
 
 app.run(function ($rootScope, Mapper) {
+
   $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
     console.error('Error transitioning from "' + fromState.name + '" to "' + toState.name + '":', error);
   });

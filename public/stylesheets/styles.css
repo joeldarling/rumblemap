@@ -3,6 +3,8 @@ html {
 }
 body {
   min-height: 100%;
+  position: relative;
+    overflow-x: hidden;
 }
 
 #map-canvas {
@@ -11,5 +13,45 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 0;
+}
+
+.main {
+  z-index: 1;
+}
+
+#earthquake-list{
+  position: absolute;
+  z-index: 100;
+  color: red;
+  float: right;
+}
+
+.virtualRepeatdemoInfiniteScroll #vertical-container {
+  height: 80%;
+  min-height: 500px;
+  max-width: 300px; }
+
+.virtualRepeatdemoInfiniteScroll .repeated-item {
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+  height: 40px;
+  padding-top: 10px;
+  color:red;
+  background-color: rgb(46, 46, 46);
+  opacity: 0.9;
+  font-size: 10px;
 
 }
+.repeated-item a {
+  color: rgb(222, 82, 0)
+}
+
+.virtualRepeatdemoInfiniteScroll md-content {
+  margin: 16px; }
+
+/*.virtualRepeatdemoInfiniteScroll md-virtual-repeat-container {
+  border: solid 1px grey; }*/
+
+.virtualRepeatdemoInfiniteScroll .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
+  padding-left: 16px; }
