@@ -21,13 +21,9 @@ app.factory('Mapper', function(){
       var marker = new google.maps.Marker({
           position: pt,
           title: earthquake.properties.title,
-          visible: false,
+          visible: true,
           label: earthquake.properties.mag.toString()
       });
-
-      // infowindow = new google.maps.InfoWindow({
-      //    content: earthquake.properties.title
-      // });
 
       if(map)
         marker.setMap(map);
@@ -38,8 +34,6 @@ app.factory('Mapper', function(){
       });
 
       points[earthquake.id] = marker;
-
-
     },
     mapCollection: function(arr){
 
@@ -49,7 +43,7 @@ app.factory('Mapper', function(){
         self.addMarker(earthquake);
       });
 
-      heatmap = new google.maps.visualization.HeatmapLayer({
+      heatmapopo= ({
         data: self.getGeoPoints(),
         map: map
       });
@@ -57,7 +51,6 @@ app.factory('Mapper', function(){
 
     },
     drawMap: function(){
-
       var self = this;
 
       for(var earthquake in points){
@@ -65,9 +58,8 @@ app.factory('Mapper', function(){
       }
 
       heatmap = new google.maps.visualization.HeatmapLayer({
-        data: self.getGeoPoints(),
         map: map,
-        gradient: gradient
+        data: self.getGeoPoints()
       });
       heatmap.set('radius', heatmap.get('radius') ? null : 15);
     },
@@ -92,6 +84,11 @@ app.factory('Mapper', function(){
           if (key !== 'perm')
              points[key].setMap(null);
       }, this);
+
+      points = {};
+
+      heatmap.set('data', null);
+
     }
   };
 

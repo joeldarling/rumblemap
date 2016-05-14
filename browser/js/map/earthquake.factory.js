@@ -1,5 +1,13 @@
 app.factory('EarthquakeFactory', function($http, $log, Mapper){
 
+  var apiUrls = [
+    'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson',
+    'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson',
+    'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson',
+    'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
+
+  ];
+
   return {
 
     fetchAll: function(){
@@ -13,6 +21,17 @@ app.factory('EarthquakeFactory', function($http, $log, Mapper){
       .catch($log.error);
       // Mapper.mapCollection(sampleData.features);
       // return sampleData.features;
+    },
+    fetchById: function(id){
+
+      return $http.get(apiUrls[id])
+      .then(function(result){
+
+        Mapper.mapCollection(result.data.features);
+        
+        return result.data.features;
+      });
+
     }
 
   };

@@ -8,8 +8,18 @@ app.directive('mainNavbar', function(){
 
 });
 
-app.controller('NavbarCtrl', function($scope){
+app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
 
-  $scope.period = ['Last Hour', 'Last Day', 'Last Week'];
+  $scope.period = ['Last Hour', 'Last Day', 'Last Week','Last Month'];
+
+  $scope.periodAnnounceClick = function(index){
+
+    EarthquakeFactory.fetchById(index)
+    .then(function(result){
+      Mapper.reset();
+      Mapper.mapCollection(result);
+      Mapper.drawMap();
+    });
+  };
 
 });

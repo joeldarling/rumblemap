@@ -20,7 +20,6 @@ app.run(function ($rootScope, Mapper) {
 
     //console.log('ini map')
     Mapper.initMap(initialize_gmaps());
-    Mapper.drawMap();
   });
 
 });
@@ -40,7 +39,17 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MainCtrl', function($scope){
+app.controller('MainCtrl', function($scope, EarthquakeFactory, Mapper){
 
   $scope.period = ['Last Hour', 'Last Day', 'Last Week'];
+
+  $scope.init = function(){
+    EarthquakeFactory.fetchAll()
+    .then(function(earthquakes){
+      $scope.earthquakes = earthquakes;
+      Mapper.drawMap();
+    });
+  };
+
+  $scope.init();
 });
