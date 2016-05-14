@@ -9,24 +9,31 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 
 });
 
-$(function() {
-    var mainMap = new Mapper(initialize_gmaps());
-    mainMap.addMarker(sample);
-});
 
-
-app.run(function ($rootScope) {
+app.run(function ($rootScope, Mapper) {
   $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
     console.error('Error transitioning from "' + fromState.name + '" to "' + toState.name + '":', error);
   });
+
+  angular.element(document).ready(function(){
+
+    Mapper.initMap(initialize_gmaps());
+
+  });
+
 });
 
 app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
         templateUrl: '/js/home/home.html',
-        controller: function(){
-
+        resolve: {
+          earthquakes: function(EarthquakeFactory){
+            return EarthquakeFactory.fetchAll();
+          }
+        },
+        controller: function($scope, earthquakes){
+          $scope.earthquakes = earthquakes;
         }
     });
 });

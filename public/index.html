@@ -3,16 +3,15 @@
   <head>
       <title>RumbleMap by Joel Darling</title>
 
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM-LljLfzzaDWyrYmPvK-0tTdr9ihCZVU&" defer></script>
+
       <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
       <link href="/stylesheets/styles.css" rel="stylesheet" />
 
       <script src="/angular/angular.js" defer></script>
       <script src="/node_modules/jquery/dist/jquery.min.js" defer></script>
+      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM-LljLfzzaDWyrYmPvK-0tTdr9ihCZVU&" defer></script>
-      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
-      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
-      <script src="/js/app.js" defer></script>
 
       <base href="/">
 
@@ -22,15 +21,16 @@
 
     <div class="container">
 
+      <div id="map-canvas"></div>
+
       <ui-view></ui-view>
 
     </div>
 
-
-
-
+    <script src="/js/app.js" defer></script>
     <script src="/js/map/map.js" defer></script>
     <script src="/js/map/mapper.js" defer></script>
+    <script src="/js/map/earthquake.factory.js" defer></script>
 
   </body>
 
