@@ -6,7 +6,7 @@ app.factory('Mapper', function(){
   var infowindow = new google.maps.InfoWindow({});
   var heatmap;
 
-  var showMarkers = false,
+  var showMarkers = true,
       showHeatmap = true;
 
   return {
@@ -117,11 +117,25 @@ app.factory('Mapper', function(){
         }
 
       }
+        this.updateHeatMap();
 
     },
     updateHeatMap: function(){
 
+      if(!heatmap)
+        return;
 
+      var active = [];
+
+      for(var earthquake in points){
+
+        if(points[earthquake].getVisible())
+          active.push(new google.maps.LatLng(points[earthquake].getPosition().lat(), points[earthquake].getPosition().lng()));
+
+      }
+
+      heatmap.set('data', null);
+      heatmap.set('data', active);
 
     },
     reset: function(){
