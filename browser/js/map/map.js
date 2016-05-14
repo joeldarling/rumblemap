@@ -6,7 +6,9 @@ function initialize_gmaps() {
 
   map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: new google.maps.LatLng(41.850033, -87.6500523),
-    zoom: 2,
+    zoom: 3,
+    streetViewControl: false,
+    mapTypeControl: false
   });
 
   //style = [{"featureType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"lightness":-100}]}];

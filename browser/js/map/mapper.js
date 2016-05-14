@@ -9,8 +9,6 @@ app.factory('Mapper', function(){
   return {
 
     initMap: function(gmap){
-
-      console.log('init', gmap)
       map = gmap;
     },
     addMarker: function(earthquake){
@@ -69,7 +67,7 @@ app.factory('Mapper', function(){
         data: self.getGeoPoints(),
         map: map
       });
-      heatmap.set('radius', heatmap.get('radius') ? null : 10);
+      heatmap.set('radius', heatmap.get('radius') ? null : 20);
 
     },
     getGeoPoints: function(){
