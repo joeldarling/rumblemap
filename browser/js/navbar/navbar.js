@@ -19,6 +19,7 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
   $scope.current = $scope.period[0];
   $scope.numActive = $scope.active;
   $scope.filter = {mag: 0};
+  $scope.rumbleEnabled = true;
 
 
   Mapper.filterMarkers();
@@ -48,6 +49,13 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
     Mapper.filterMarkers($scope.filter.mag);
     $scope.numActive = Mapper.getActive();
 
+  };
+
+  $scope.rumble = function(){
+
+    console.log($('body'))
+
+    $('#map-canvas').effect("bounce",{distance:5}, "slow");
   };
 
 });
