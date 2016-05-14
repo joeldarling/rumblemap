@@ -10,7 +10,8 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 });
 
 $(function() {
-    initialize_gmaps();
+    var mainMap = new Mapper(initialize_gmaps());
+    mainMap.addMarker(sample);
 });
 
 
