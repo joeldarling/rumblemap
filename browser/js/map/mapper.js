@@ -103,10 +103,25 @@ app.factory('Mapper', function(){
     },
     filterMarkers: function(mag){
 
+      if(!showMarkers)
+        return;
+
       for(var marker in points){
-        console.log('filter', points[marker]);
+
+        var thenum = points[marker].title.match(/\d+/)[0]; //
+
+        if(thenum >= mag){
+          points[marker].setVisible(true);
+        } else {
+          points[marker].setVisible(false);
+        }
 
       }
+
+    },
+    updateHeatMap: function(){
+
+
 
     },
     reset: function(){

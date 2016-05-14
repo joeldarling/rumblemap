@@ -39,7 +39,6 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
   };
 
   $scope.filterMarkers = function(){
-    console.log($scope.filter);
     Mapper.filterMarkers($scope.filter.mag);
   };
 
