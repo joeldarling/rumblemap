@@ -7,7 +7,11 @@
 
         <md-menu>
             <md-button aria-label="Time Period" ng-click="$mdOpenMenu($event)">
+
                 <md-icon md-font-set="material-icons"> event </md-icon>
+                <md-tooltip md-direction="bottom">
+                 Time Period
+               </md-tooltip>
             </md-button>
             <md-menu-content width="3">
                 <md-menu-item ng-repeat="time in period">
@@ -19,16 +23,21 @@
         </md-menu>
 
         <span class="md-body-2" style="padding-right:10px">MAG</span>
-        <md-slider ng-model="myValue" min="0" max="10" class="md-warn">
-        </md-slider>
+        <md-slider ng-model="myValue" min="0" max="10" class="md-warn"> </md-slider>
 
         <md-button>
             <md-icon md-font-set="material-icons"> assessment </md-icon>
+            <md-tooltip md-direction="bottom">
+             Earthquake Stats
+           </md-tooltip>
         </md-button>
 
         <md-menu>
             <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
                 <md-icon md-font-set="material-icons"> settings </md-icon>
+                <md-tooltip md-direction="bottom">
+                  Map Settings
+               </md-tooltip>
             </md-button>
             <md-menu-content width="3">
                 <md-menu-item>
