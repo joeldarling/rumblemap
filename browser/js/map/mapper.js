@@ -21,7 +21,7 @@ app.factory('Mapper', function(){
       var marker = new google.maps.Marker({
           position: pt,
           title: earthquake.properties.title,
-          visible: true,
+          visible: false,
           label: earthquake.properties.mag.toString()
       });
 

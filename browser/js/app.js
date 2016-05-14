@@ -39,3 +39,8 @@ app.config(function ($stateProvider) {
         }
     });
 });
+
+app.controller('MainCtrl', function($scope){
+
+  $scope.period = ['Last Hour', 'Last Day', 'Last Week'];
+});

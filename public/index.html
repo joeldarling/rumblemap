@@ -1,51 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <title>RumbleMap by Joel Darling</title>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM-LljLfzzaDWyrYmPvK-0tTdr9ihCZVU&libraries=visualization" defer></script>
+<head>
+    <title>RumbleMap by Joel Darling</title>
 
-      <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
-      <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-      <link href="/stylesheets/styles.css" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM-LljLfzzaDWyrYmPvK-0tTdr9ihCZVU&libraries=visualization" defer></script>
 
-      <!-- <script src="/node_modules/jquery/dist/jquery.min.js" defer></script> -->
-      <!-- Angular Material requires Angular.js Libraries -->
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"  defer></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"  defer></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"  defer></script>
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"  defer></script>
-      <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"  defer></script>
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-      <!-- Angular Material Library -->
-      <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"  defer></script>
+    <link href="/stylesheets/styles.css" rel="stylesheet" />
 
-      <script src="/js/app.js"  defer></script>
-      <script src="/js/map/map.js"  defer></script>
-      <script src="/js/map/mapper.js"  defer></script>
-      <script src="/js/map/earthquake.factory.js"  defer></script>
+    <!-- <script src="/node_modules/jquery/dist/jquery.min.js" defer></script> -->
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js" defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js" defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js" defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js" defer></script>
+    <script src="/node_modules/angular-ui-router/release/angular-ui-router.js" defer></script>
 
-      <base href="/">
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js" defer></script>
 
-  </head>
+    <script src="/js/app.js" defer></script>
+    <script src="/js/map/map.js" defer></script>
+    <script src="/js/map/mapper.js" defer></script>
+    <script src="/js/map/earthquake.factory.js" defer></script>
 
-  <body ng-app="rumblemap">
+    <base href="/">
 
-    <div class="container ">
+</head>
 
-      <md-slider  class="main"min="0" max="8">
-      </md-slider>
+<body ng-app="rumblemap" ng-controller="MainCtrl">
+
+    <div layout="column" layout-fill>
+        <md-toolbar>
+            <div id="menubar" class="md-toolbar-tools">
+                <span>RumbleMap</span>
+                <!-- fill up the space between left and right area -->
+                <span flex></span>
 
 
-      <div id="map-canvas"></div>
+                <md-menu>
+                  <md-button aria-label="Time Period"  ng-click="$mdOpenMenu($event)">
+                    <md-icon md-font-set="material-icons"> event </md-icon>
+                  </md-button>
+                  <md-menu-content width="3">
+                    <md-menu-item ng-repeat="time in period">
+                      <md-button ng-click="ctrl.announceClick($index)">
+                        {{time}}
+                      </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
 
-      <ui-view></ui-view>
+                <span class="md-body-2" style="padding-right:10px">MAG</span>
+                <md-slider ng-model="myValue" min="0" max="10" class="md-warn">
+                </md-slider>
+
+                <md-button>
+                    <md-icon md-font-set="material-icons"> assessment </md-icon>
+                </md-button>
+
+                <md-menu>
+                  <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-font-set="material-icons"> settings </md-icon>
+                  </md-button>
+                  <md-menu-content width="3">
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.announceClick($index)">
+                        Heatmap
+                      </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="ctrl.announceClick($index)">
+                        Markers
+                      </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+
+
+            </div>
+        </md-toolbar>
+
+        <md-content>
+
+            <div id="map-canvas"></div>
+
+        </md-content>
+
+
+
+        <ui-view></ui-view>
 
     </div>
 
 
 
-  </body>
+</body>
 
 
 </html>
