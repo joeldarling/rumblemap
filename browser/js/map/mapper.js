@@ -6,6 +6,9 @@ app.factory('Mapper', function(){
   var infowindow = new google.maps.InfoWindow({});
   var heatmap;
 
+  var showMarkers = false,
+      showHeatmap = true;
+
   return {
 
     initMap: function(gmap){
@@ -21,8 +24,7 @@ app.factory('Mapper', function(){
       var marker = new google.maps.Marker({
           position: pt,
           title: earthquake.properties.title,
-          visible: true,
-          label: earthquake.properties.mag.toString()
+          visible: showMarkers,
       });
 
       if(map)
@@ -59,9 +61,10 @@ app.factory('Mapper', function(){
 
       heatmap = new google.maps.visualization.HeatmapLayer({
         map: map,
-        data: self.getGeoPoints()
+        data: self.getGeoPoints(),
+        gradient: gradient
       });
-      heatmap.set('radius', heatmap.get('radius') ? null : 15);
+      heatmap.set('radius', heatmap.get('radius') ? null : 30);
     },
     getGeoPoints: function(){
 
@@ -79,9 +82,36 @@ app.factory('Mapper', function(){
       marker.setMap(null);
       delete points[item._id];
     },
+    toggleMarkers: function(){
+
+      for(var marker in points){
+        if(showMarkers) {
+            points[marker].setVisible(false);
+          }
+          else {
+            points[marker].setVisible(true);
+          }
+      }
+
+      showMarkers = !showMarkers;
+
+    },
+    toggleHeatmap: function(){
+      heatmap.setMap(heatmap.getMap() ? null : map);
+      showHeatmap = !showHeatmap;
+
+    },
+    filterMarkers: function(mag){
+
+      for(var marker in points){
+        console.log('filter', points[marker]);
+
+      }
+
+    },
     reset: function(){
+
       Object.keys(points).forEach(function(key) {
-          if (key !== 'perm')
              points[key].setMap(null);
       }, this);
 

@@ -4,9 +4,8 @@
         <!-- fill up the space between left and right area -->
         <span flex></span>
 
-        <span class="md-body-2" style="padding-right:10px">MAG</span>
-        <md-slider ng-model="myValue" min="0" max="10" class="md-warn"> </md-slider>
-
+        <span class="md-body-2" style="padding-right:10px">{{ filter.mag }}</span>
+        <md-slider ng-model="filter.mag" ng-change="filterMarkers()" min="0" max="10" class="md-warn"> </md-slider>
         <md-menu>
             <md-button aria-label="Time Period" ng-click="$mdOpenMenu($event)">
 
@@ -41,12 +40,12 @@
             </md-button>
             <md-menu-content width="3">
                 <md-menu-item>
-                    <md-button ng-click="ctrl.announceClick($index)">
+                    <md-button ng-click="toggleHeatmap()">
                         Heatmap
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="ctrl.announceClick($index)">
+                    <md-button ng-click="toggleMarkers()">
                         Markers
                     </md-button>
                 </md-menu-item>
