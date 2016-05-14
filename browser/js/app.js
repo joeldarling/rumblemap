@@ -17,8 +17,9 @@ app.run(function ($rootScope, Mapper) {
 
   angular.element(document).ready(function(){
 
+    //console.log('ini map')
     Mapper.initMap(initialize_gmaps());
-
+    Mapper.drawMap();
   });
 
 });
@@ -34,7 +35,6 @@ app.config(function ($stateProvider) {
         },
         controller: function($scope, earthquakes, Mapper){
           $scope.earthquakes = earthquakes;
-          Mapper.getGeoPoints();
         }
     });
 });

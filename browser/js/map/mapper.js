@@ -9,6 +9,8 @@ app.factory('Mapper', function(){
   return {
 
     initMap: function(gmap){
+
+      console.log('init', gmap)
       map = gmap;
     },
     addMarker: function(earthquake){
@@ -16,13 +18,12 @@ app.factory('Mapper', function(){
       if(points[earthquake.id])
         return;
 
-
       var pt = new google.maps.LatLng(earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0]);
 
       var marker = new google.maps.Marker({
           position: pt,
           title: earthquake.properties.title,
-          visible: true,
+          visible: false,
           label: earthquake.properties.mag.toString()
       });
 
@@ -30,17 +31,21 @@ app.factory('Mapper', function(){
          content: earthquake.properties.title
       });
 
-      marker.setMap(map);
+      if(map)
+        marker.setMap(map);
 
       marker.addListener('click', function() {
           infowindow.open(map, marker);
       });
 
       points[earthquake.id] = marker;
+
+
     },
     mapCollection: function(arr){
 
       var self = this;
+
       arr.forEach(function(earthquake){
         self.addMarker(earthquake);
       });
@@ -49,6 +54,22 @@ app.factory('Mapper', function(){
         data: self.getGeoPoints(),
         map: map
       });
+
+
+    },
+    drawMap: function(){
+
+      var self = this;
+
+      // for(var earthquake in points){
+      //   points[earthquake].setMap(map);
+      // }
+
+      heatmap = new google.maps.visualization.HeatmapLayer({
+        data: self.getGeoPoints(),
+        map: map
+      });
+      heatmap.set('radius', heatmap.get('radius') ? null : 10);
 
     },
     getGeoPoints: function(){
@@ -59,8 +80,6 @@ app.factory('Mapper', function(){
         geo.push(new google.maps.LatLng(points[earthquake].getPosition().lat(), points[earthquake].getPosition().lng()));
 
       }
-
-      console.log(geo);
 
       return geo;
     },
