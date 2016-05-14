@@ -24,30 +24,32 @@ app.run(function ($rootScope, Mapper) {
 
 });
 
-app.config(function ($stateProvider) {
-    $stateProvider.state('home', {
-        url: '/',
-        templateUrl: '/js/home/home.html',
-        resolve: {
-          earthquakes: function(EarthquakeFactory){
-            return EarthquakeFactory.fetchAll();
-          }
-        },
-        controller: function($scope, earthquakes, Mapper){
-          $scope.earthquakes = earthquakes;
-        }
-    });
-});
+// app.config(function ($stateProvider) {
+//     $stateProvider.state('home', {
+//         url: '/',
+//         templateUrl: '/js/home/home.html',
+//         resolve: {
+//           earthquakes: function(EarthquakeFactory){
+//             return EarthquakeFactory.fetchAll();
+//           }
+//         },
+//         controller: function($scope, earthquakes, Mapper){
+//           $scope.earthquakes = earthquakes;
+//         }
+//     });
+// });
 
 app.controller('MainCtrl', function($scope, EarthquakeFactory, Mapper){
 
   $scope.period = ['Last Hour', 'Last Day', 'Last Week'];
+  $scope.active = 0;
 
   $scope.init = function(){
     EarthquakeFactory.fetchAll()
     .then(function(earthquakes){
       $scope.earthquakes = earthquakes;
       Mapper.drawMap();
+      $scope.active = Mapper.getActive();
     });
   };
 

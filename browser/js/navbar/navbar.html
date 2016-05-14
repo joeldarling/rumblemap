@@ -1,11 +1,15 @@
 <md-toolbar>
     <div id="menubar" class="md-toolbar-tools">
         <span>RumbleMap</span>
+        <span class="md-body-2" style="padding-left:300px">{{ numActive }} earthquakes in the {{current.toLowerCase()}} with min {{filter.mag}} magnitude</span>
         <!-- fill up the space between left and right area -->
         <span flex></span>
 
         <span class="md-body-2" style="padding-right:10px">{{ filter.mag }}</span>
-        <md-slider ng-model="filter.mag" ng-change="filterMarkers()" min="0" max="10" class="md-warn"> </md-slider>
+        <md-slider ng-model="filter.mag" ng-change="filterMarkers()" min="0" max="10" class="md-warn">
+
+        </md-slider>
+
         <md-menu>
             <md-button aria-label="Time Period" ng-click="$mdOpenMenu($event)">
 
@@ -22,6 +26,7 @@
                 </md-menu-item>
             </md-menu-content>
         </md-menu>
+        <span class="md-body-1" style="">{{ current }}</span>
 
 
         <md-button>

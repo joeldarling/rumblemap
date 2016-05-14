@@ -64,7 +64,7 @@ app.factory('Mapper', function(){
         data: self.getGeoPoints(),
         gradient: gradient
       });
-      heatmap.set('radius', heatmap.get('radius') ? null : 30);
+      heatmap.set('radius', heatmap.get('radius') ? null : 20);
     },
     getGeoPoints: function(){
 
@@ -118,6 +118,19 @@ app.factory('Mapper', function(){
 
       }
         this.updateHeatMap();
+
+    },
+    getActive: function(){
+
+      var active=0;
+
+      for(var earthquake in points){
+
+        if(points[earthquake].getVisible())
+          active++;
+      }
+
+      return active;
 
     },
     updateHeatMap: function(){

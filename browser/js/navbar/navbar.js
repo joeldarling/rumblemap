@@ -6,6 +6,8 @@ app.directive('mainNavbar', function(){
     controller: 'NavbarCtrl',
     scope:{
 
+      active: '='
+
     }
   };
 
@@ -14,7 +16,8 @@ app.directive('mainNavbar', function(){
 app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
 
   $scope.period = ['Last Hour', 'Last Day', 'Last Week'];
-
+  $scope.current = $scope.period[0];
+  $scope.numActive = $scope.active;
   $scope.filter = {mag: 0};
 
 
@@ -22,11 +25,14 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
 
   $scope.periodAnnounceClick = function(index){
 
+    $scope.current = $scope.period[index];
+
     EarthquakeFactory.fetchById(index)
     .then(function(result){
       Mapper.reset();
       Mapper.mapCollection(result);
       Mapper.drawMap();
+      $scope.numActive = Mapper.getActive();
     });
   };
 
@@ -40,6 +46,8 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
 
   $scope.filterMarkers = function(){
     Mapper.filterMarkers($scope.filter.mag);
+    $scope.numActive = Mapper.getActive();
+
   };
 
 });
