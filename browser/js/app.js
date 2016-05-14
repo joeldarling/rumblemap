@@ -32,8 +32,9 @@ app.config(function ($stateProvider) {
             return EarthquakeFactory.fetchAll();
           }
         },
-        controller: function($scope, earthquakes){
+        controller: function($scope, earthquakes, Mapper){
           $scope.earthquakes = earthquakes;
+          Mapper.getGeoPoints();
         }
     });
 });

@@ -3,6 +3,9 @@ app.factory('Mapper', function(){
   var map;
   var points = {};
 
+  var infowindow;
+  var heatmap;
+
   return {
 
     initMap: function(gmap){
@@ -18,23 +21,20 @@ app.factory('Mapper', function(){
 
       var marker = new google.maps.Marker({
           position: pt,
-          title: earthquake.properties.place,
+          title: earthquake.properties.title,
           visible: true,
           label: earthquake.properties.mag.toString()
       });
 
-      var infowindow = new google.maps.InfoWindow({
-          content: earthquake.properties.place
+      infowindow = new google.maps.InfoWindow({
+         content: earthquake.properties.title
       });
-
 
       marker.setMap(map);
 
       marker.addListener('click', function() {
           infowindow.open(map, marker);
       });
-
-
 
       points[earthquake.id] = marker;
     },
@@ -44,6 +44,25 @@ app.factory('Mapper', function(){
       arr.forEach(function(earthquake){
         self.addMarker(earthquake);
       });
+
+      heatmap = new google.maps.visualization.HeatmapLayer({
+        data: self.getGeoPoints(),
+        map: map
+      });
+
+    },
+    getGeoPoints: function(){
+
+      var geo = [];
+
+      for(var earthquake in points){
+        geo.push(new google.maps.LatLng(points[earthquake].getPosition().lat(), points[earthquake].getPosition().lng()));
+
+      }
+
+      console.log(geo);
+
+      return geo;
     },
     removeMarker: function(iten){
       var marker = points[item._id];
@@ -59,3 +78,35 @@ app.factory('Mapper', function(){
   };
 
 });
+//
+// function toggleHeatmap() {
+//   heatmap.setMap(heatmap.getMap() ? null : map);
+// }
+//
+// function changeGradient() {
+//   var gradient = [
+//     'rgba(0, 255, 255, 0)',
+//     'rgba(0, 255, 255, 1)',
+//     'rgba(0, 191, 255, 1)',
+//     'rgba(0, 127, 255, 1)',
+//     'rgba(0, 63, 255, 1)',
+//     'rgba(0, 0, 255, 1)',
+//     'rgba(0, 0, 223, 1)',
+//     'rgba(0, 0, 191, 1)',
+//     'rgba(0, 0, 159, 1)',
+//     'rgba(0, 0, 127, 1)',
+//     'rgba(63, 0, 91, 1)',
+//     'rgba(127, 0, 63, 1)',
+//     'rgba(191, 0, 31, 1)',
+//     'rgba(255, 0, 0, 1)'
+//   ]
+//   heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+// }
+//
+// function changeRadius() {
+//   heatmap.set('radius', heatmap.get('radius') ? null : 20);
+// }
+//
+// function changeOpacity() {
+//   heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+// }
