@@ -50,14 +50,18 @@
             </md-button>
             <md-menu-content width="3">
                 <md-menu-item>
-                    <md-button ng-click="toggleHeatmap()">
+                    <md-list-item>
                         Heatmap
-                    </md-button>
+                    </md-list-item>
+                    <md-switch class="md-secondary" ng-click="toggleHeatmap()" ng-model="heatmapEnabled"></md-switch>
+
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="toggleMarkers()">
+                    <md-list-item>
                         Markers
-                    </md-button>
+                    </md-list-item>
+                    <md-switch class="md-secondary" ng-click="toggleMarkers()" ng-model="markersEnabled"></md-switch>
+
                 </md-menu-item>
             </md-menu-content>
         </md-menu>

@@ -20,6 +20,8 @@ app.controller('NavbarCtrl', function($scope, Mapper, EarthquakeFactory){
   $scope.numActive = $scope.active;
   $scope.filter = {mag: 0};
   $scope.rumbleEnabled = true;
+  $scope.markersEnabled = true;
+  $scope.heatmapEnabled = true;
 
   $scope.init = function(){
     EarthquakeFactory.fetchById(0)
