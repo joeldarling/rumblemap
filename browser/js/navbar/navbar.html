@@ -1,7 +1,7 @@
 <md-toolbar>
     <div id="menubar" class="md-toolbar-tools">
         <span>RumbleMap</span>
-        <span class="md-body-2" style="padding-left:300px">{{ numActive }} earthquakes in the {{current.toLowerCase()}} with min {{filter.mag}} magnitude</span>
+        <span class="md-body-2" style="padding-left:200px">{{ numActive }} earthquakes in the {{current.toLowerCase()}} with min {{filter.mag}} magnitude</span>
         <!-- fill up the space between left and right area -->
         <span flex></span>
 
@@ -11,7 +11,7 @@
         </md-slider>
 
         <md-menu>
-            <md-button aria-label="Time Period" ng-click="$mdOpenMenu($event)">
+            <md-button aria-label="Time Period" class="md-icon-button" ng-click="$mdOpenMenu($event)">
 
                 <md-icon md-font-set="material-icons"> event </md-icon>
                 <md-tooltip md-direction="bottom">
@@ -35,7 +35,12 @@
              Earthquake Stats
            </md-tooltip>
         </md-button>
+        <div layout-xs="column" flex-xs="100">
 
+          <md-checkbox style="margin-top: 20px" aria-label="Disabled checkbox" ng-model="data.cb3">
+            Rumble
+          </md-checkbox>
+        </div>
         <md-menu>
             <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
                 <md-icon md-font-set="material-icons"> settings </md-icon>
