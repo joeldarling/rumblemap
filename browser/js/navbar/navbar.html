@@ -1,0 +1,48 @@
+<md-toolbar>
+    <div id="menubar" class="md-toolbar-tools">
+        <span>RumbleMap</span>
+        <!-- fill up the space between left and right area -->
+        <span flex></span>
+
+
+        <md-menu>
+            <md-button aria-label="Time Period" ng-click="$mdOpenMenu($event)">
+                <md-icon md-font-set="material-icons"> event </md-icon>
+            </md-button>
+            <md-menu-content width="3">
+                <md-menu-item ng-repeat="time in period">
+                    <md-button ng-click="ctrl.announceClick($index)">
+                        {{time}}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+        <span class="md-body-2" style="padding-right:10px">MAG</span>
+        <md-slider ng-model="myValue" min="0" max="10" class="md-warn">
+        </md-slider>
+
+        <md-button>
+            <md-icon md-font-set="material-icons"> assessment </md-icon>
+        </md-button>
+
+        <md-menu>
+            <md-button aria-label="Open demo menu" ng-click="$mdOpenMenu($event)">
+                <md-icon md-font-set="material-icons"> settings </md-icon>
+            </md-button>
+            <md-menu-content width="3">
+                <md-menu-item>
+                    <md-button ng-click="ctrl.announceClick($index)">
+                        Heatmap
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="ctrl.announceClick($index)">
+                        Markers
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+    </div>
+</md-toolbar>
